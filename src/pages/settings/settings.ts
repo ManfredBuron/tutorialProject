@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 import { LoginPage } from '../login/login';
 import { UserProvider } from '../../providers/user/user';
@@ -22,8 +23,7 @@ export class SettingsPage {
   profilimage: string = '';
   settings: any = { 'name': '', 'surname': '', 'profilimage': '' };
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private userProvider: UserProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private userProvider: UserProvider, private camera: Camera) {
   }
 
   ionViewWillEnter() {
@@ -65,6 +65,26 @@ export class SettingsPage {
     } else {
       alert("name AND surname couldn't be empty !");
     }
+  }
+
+
+
+  takePhoto() {
+    const CamOptions: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: this.camera.PictureSourceType.CAMERA
+    }
+
+    this.camera.getPicture(CamOptions).then((imagePath) => {
+      this.profilimage = imagePath;
+      alert(this.profilimage);
+    }, (error) => {
+      alert(error);
+    });
+
   }
 
 }

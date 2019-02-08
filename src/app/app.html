@@ -1,9 +1,13 @@
 
 <ion-content padding>
-  <ion-tabs class="tabs-icon">
-    <ion-tab tabIcon="home" [root]="homePage"></ion-tab>
-    <ion-tab tabIcon="settings" [root]="settingsPage"></ion-tab>
-  </ion-tabs>
+  <ion-nav [root]="homePage"></ion-nav>
+
+  <div *ngIf="isConnect()">
+    <ion-tabs class="tabs-icon">
+      <ion-tab tabIcon="home" [root]="homePage"></ion-tab>
+      <ion-tab tabIcon="settings" [root]="settingsPage"></ion-tab>
+    </ion-tabs>
+  </div>
 </ion-content>
 
 

@@ -18,7 +18,7 @@ export class UserProvider {
     return new Promise((resolve, reject) => {
       this.storage.set('user', email).then(
         (result) => {
-          setTimeout(() => resolve("Logged as " + result), 2000);
+          setTimeout(() => resolve("Logged as " + result), 1000);
         },
         (error) => {
           reject(error);
@@ -31,21 +31,24 @@ export class UserProvider {
   }
 
   isLoggedIn() {
-    return this.getUser().then(
-      (result) => {
-        if (result != null)
-          return true;
-        else
-          return false;},
-      () => { return false; }
-    );
+    return this.storage.ready().then(() => {
+      return this.getUser().then(
+        (result) => {
+          if (result != null)
+            return true;
+          else
+            return false;
+        },
+        () => { return false; }
+      );
+    });
 
   }
 
   register(email, password, passwordRepeated) {
     return new Promise((resolve, reject) => {
       if (password == passwordRepeated)
-        setTimeout(() => resolve(true), 2000);
+        setTimeout(() => resolve(true), 1000);
       else
         reject(new Error('registration failed'));
     });

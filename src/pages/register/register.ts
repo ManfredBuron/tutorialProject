@@ -24,14 +24,15 @@ export class RegisterPage {
   register() {
 
     if (this.email != '' && this.password != '' && this.checkPassword != '')
-      if (this.password == this.checkPassword)
+      if (this.password == this.checkPassword) {
         console.log('register in');
+        this.navCtrl.pop();
+      }
       else
         alert('Password and Check Password should be the same');
     else
       alert('All space should be fill out');
 
-    this.navCtrl.pop();
   }
 
 }

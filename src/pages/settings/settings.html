@@ -32,9 +32,14 @@
     </ion-item>
 
     <ion-item>
-      <ion-label floating>Profil image</ion-label>
-      <ion-input type="text" [(ngModel)]="profilimage"></ion-input>
+      <ion-label>Profil image</ion-label>
     </ion-item>
+    <img [src]="profilimage" />
+
+    <div padding>
+      <button ion-button (click)="takePhoto()">photo</button>
+    </div>
+
 
   </ion-list>
 

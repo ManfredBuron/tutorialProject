@@ -11,6 +11,17 @@
 
 </ion-header>
 
-  <ion-content padding>
-    Home Page
-  </ion-content>
+<ion-content padding>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+
+  <ion-list>
+    <button ion-item *ngFor="let post of posts" (click)="postDetail(post.id)" icon-start>
+      {{ post.id }}
+      --
+      {{ post.title }}
+    </button>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
